@@ -1,7 +1,6 @@
 package virtualfitnesstrainer;
 
 public class Cardio implements Exercise{
-	
 	String name; 
 	int duration;
 	String[] equipment; 

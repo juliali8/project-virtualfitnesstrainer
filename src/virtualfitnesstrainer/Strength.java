@@ -1,6 +1,7 @@
 package virtualfitnesstrainer;
 
 public class Strength implements Exercise {
+	
 	String name; 
 	int duration;
 	int numOfReps; 

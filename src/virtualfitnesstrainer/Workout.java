@@ -6,6 +6,5 @@ public interface Workout {
 	
 	public boolean removeExercise(Exercise e); 
 	
-	
 	public boolean getTotalTimeOfWorkout(); 
 }

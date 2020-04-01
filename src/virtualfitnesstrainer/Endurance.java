@@ -1,6 +1,7 @@
 package virtualfitnesstrainer;
 
 public class Endurance implements Exercise {
+	
 	String name; 
 	int duration; 
 	String[] equipment; 
