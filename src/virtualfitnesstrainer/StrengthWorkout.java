@@ -1,23 +1,41 @@
 package virtualfitnesstrainer;
 
-import java.util.List;
+import java.util.*;
 
 public class StrengthWorkout implements Workout {
 
-	List<Exercise> allExercises; 
-	int desiredTime; 
-
-	public int getTotalTimeOfWorkout() {
-		int totalSum = 0;
-		for(Exercise e : allExercises) {
-			totalSum += e.getDurationInMinute();
+	List<Exercise> exercises; 
+	int desiredTime;
+	int totalTime;
+	List<String> equipment;
+	List<Exercise> workout;
+	
+	public StrengthWorkout() {
+		this.desiredTime = 0;
+		this.totalTime = 0;
+		this.exercises = new ArrayList<Exercise>();
+		// FIXME: Fill exercises with exercises
+	}
+	
+	public void setDuration(int minutes) {
+		this.desiredTime = minutes;
+	}
+	
+	public void addEquipment(List<String> equipment) {
+		this.equipment = equipment;
+	}
+	
+	public List<Exercise> generateWorkout() {
+		while (totalTime < desiredTime) {
+			addExercise(exercises.get((int)(Math.random() * exercises.size())));
 		}
-		return totalSum; 
+		return exercises;
 	}
 	
 	public boolean addExercise(Exercise e) {
-		if(getTotalTimeOfWorkout() + e.getDurationInMinute() <= desiredTime) {
-			return allExercises.add(e);
+		if(totalTime + e.getDuration() <= desiredTime) {
+			totalTime += e.getDuration();
+			return exercises.add(e);
 		}
 		else {
 			return false;
@@ -25,7 +43,7 @@ public class StrengthWorkout implements Workout {
 	}
 
 	public boolean removeExercise(Exercise e) {
-		return allExercises.remove(e); 
+		return exercises.remove(e); 
 	}
 
 }

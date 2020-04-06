@@ -1,94 +1,118 @@
 package virtualfitnesstrainer;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.SpringLayout;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JCheckBox;
-import javax.swing.JButton;
+import java.awt.event.*;
+import java.util.*;
 
+@SuppressWarnings("serial")
 public class MaterialsInputWindow extends JFrame {
 
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MaterialsInputWindow frame = new MaterialsInputWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JPanel panel;
+	private JCheckBox[] checkboxes;
+	private Workout workout;
 
 	/**
 	 * Create the frame.
 	 */
-	public MaterialsInputWindow() {
+	public MaterialsInputWindow(Workout workout) {
+		this.workout = workout;
+		this.checkboxes = new JCheckBox[6];
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		SpringLayout sl_contentPane = new SpringLayout();
-		contentPane.setLayout(sl_contentPane);
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(panel);
+		SpringLayout layout = new SpringLayout();
+		panel.setLayout(layout);
 		
-		JLabel lblCheckAllThat = new JLabel("check all that apply");
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblCheckAllThat, 154, SpringLayout.WEST, contentPane);
-		contentPane.add(lblCheckAllThat);
+		JLabel checkLabel = new JLabel("Check all that apply");
+		layout.putConstraint(SpringLayout.WEST, checkLabel, 154, SpringLayout.WEST, panel);
+		panel.add(checkLabel);
 		
-		JLabel lblWhatMaterialsDo = new JLabel("What materials do you have handy?");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblCheckAllThat, 18, SpringLayout.SOUTH, lblWhatMaterialsDo);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblWhatMaterialsDo, 113, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblWhatMaterialsDo, 333, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblWhatMaterialsDo, 40, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblWhatMaterialsDo, 56, SpringLayout.NORTH, contentPane);
-		contentPane.add(lblWhatMaterialsDo);
+		JLabel materialsLabel = new JLabel("What materials do you have handy?");
+		layout.putConstraint(SpringLayout.NORTH, checkLabel, 18, SpringLayout.SOUTH, materialsLabel);
+		layout.putConstraint(SpringLayout.WEST, materialsLabel, 113, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.EAST, materialsLabel, 333, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.NORTH, materialsLabel, 40, SpringLayout.NORTH, panel);
+		layout.putConstraint(SpringLayout.SOUTH, materialsLabel, 56, SpringLayout.NORTH, panel);
+		panel.add(materialsLabel);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("dumbbells");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, chckbxNewCheckBox, 31, SpringLayout.SOUTH, lblCheckAllThat);
-		sl_contentPane.putConstraint(SpringLayout.WEST, chckbxNewCheckBox, 28, SpringLayout.WEST, contentPane);
-		contentPane.add(chckbxNewCheckBox);
+		JCheckBox dumbbellsCheckBox = new JCheckBox("Dumbbells");
+		layout.putConstraint(SpringLayout.NORTH, dumbbellsCheckBox, 31, SpringLayout.SOUTH, checkLabel);
+		layout.putConstraint(SpringLayout.WEST, dumbbellsCheckBox, 28, SpringLayout.WEST, panel);
+		panel.add(dumbbellsCheckBox);
+		checkboxes[0] = dumbbellsCheckBox;
 		
-		JCheckBox chckbxMat = new JCheckBox("mat");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, chckbxMat, 6, SpringLayout.SOUTH, chckbxNewCheckBox);
-		sl_contentPane.putConstraint(SpringLayout.WEST, chckbxMat, 0, SpringLayout.WEST, chckbxNewCheckBox);
-		contentPane.add(chckbxMat);
+		JCheckBox matCheckBox = new JCheckBox("Mat");
+		layout.putConstraint(SpringLayout.NORTH, matCheckBox, 6, SpringLayout.SOUTH, dumbbellsCheckBox);
+		layout.putConstraint(SpringLayout.WEST, matCheckBox, 0, SpringLayout.WEST, dumbbellsCheckBox);
+		panel.add(matCheckBox);
+		checkboxes[1] = matCheckBox;
 		
-		JCheckBox chckbxResistanceBand = new JCheckBox("resistance band");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, chckbxResistanceBand, 6, SpringLayout.SOUTH, chckbxMat);
-		sl_contentPane.putConstraint(SpringLayout.WEST, chckbxResistanceBand, 0, SpringLayout.WEST, chckbxNewCheckBox);
-		contentPane.add(chckbxResistanceBand);
+		JCheckBox resistBandCheckBox = new JCheckBox("Resistance band");
+		layout.putConstraint(SpringLayout.NORTH, resistBandCheckBox, 6, SpringLayout.SOUTH, matCheckBox);
+		layout.putConstraint(SpringLayout.WEST, resistBandCheckBox, 0, SpringLayout.WEST, dumbbellsCheckBox);
+		panel.add(resistBandCheckBox);
+		checkboxes[2] = resistBandCheckBox;
 		
-		JCheckBox chckbxTreadmill = new JCheckBox("treadmill");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, chckbxTreadmill, 0, SpringLayout.NORTH, chckbxNewCheckBox);
-		sl_contentPane.putConstraint(SpringLayout.WEST, chckbxTreadmill, 59, SpringLayout.EAST, chckbxNewCheckBox);
-		contentPane.add(chckbxTreadmill);
+		JCheckBox treadmillCheckBox = new JCheckBox("Treadmill");
+		layout.putConstraint(SpringLayout.NORTH, treadmillCheckBox, 0, SpringLayout.NORTH, dumbbellsCheckBox);
+		layout.putConstraint(SpringLayout.WEST, treadmillCheckBox, 59, SpringLayout.EAST, dumbbellsCheckBox);
+		panel.add(treadmillCheckBox);
+		checkboxes[3] = treadmillCheckBox;
 		
-		JCheckBox chckbxBike = new JCheckBox("bike");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, chckbxBike, 0, SpringLayout.NORTH, chckbxMat);
-		sl_contentPane.putConstraint(SpringLayout.WEST, chckbxBike, 0, SpringLayout.WEST, chckbxTreadmill);
-		contentPane.add(chckbxBike);
+		JCheckBox bikeCheckBox = new JCheckBox("Bike");
+		layout.putConstraint(SpringLayout.NORTH, bikeCheckBox, 0, SpringLayout.NORTH, matCheckBox);
+		layout.putConstraint(SpringLayout.WEST, bikeCheckBox, 0, SpringLayout.WEST, treadmillCheckBox);
+		panel.add(bikeCheckBox);
+		checkboxes[4] = bikeCheckBox;
 		
-		JCheckBox chckbxMedicineBall = new JCheckBox("medicine ball");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, chckbxMedicineBall, 0, SpringLayout.NORTH, chckbxResistanceBand);
-		sl_contentPane.putConstraint(SpringLayout.WEST, chckbxMedicineBall, 0, SpringLayout.WEST, chckbxTreadmill);
-		contentPane.add(chckbxMedicineBall);
+		JCheckBox medBallCheckBox = new JCheckBox("Medicine ball");
+		layout.putConstraint(SpringLayout.NORTH, medBallCheckBox, 0, SpringLayout.NORTH, resistBandCheckBox);
+		layout.putConstraint(SpringLayout.WEST, medBallCheckBox, 0, SpringLayout.WEST, treadmillCheckBox);
+		panel.add(medBallCheckBox);
+		checkboxes[5] = medBallCheckBox;
 		
-		JButton btnBegin = new JButton("BEGIN");
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnBegin, 0, SpringLayout.SOUTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnBegin, -10, SpringLayout.EAST, contentPane);
-		contentPane.add(btnBegin);
+		JButton prevButton = new JButton("Previous");
+		prevButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				prev();
+			}
+		});
+		layout.putConstraint(SpringLayout.SOUTH, prevButton, 0, SpringLayout.SOUTH, panel);
+		panel.add(prevButton);
+		
+		JButton beginButton = new JButton("BEGIN");
+		beginButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				begin();
+			}
+		});
+		layout.putConstraint(SpringLayout.SOUTH, beginButton, 0, SpringLayout.SOUTH, panel);
+		layout.putConstraint(SpringLayout.EAST, beginButton, -10, SpringLayout.EAST, panel);
+		panel.add(beginButton);
 	}
+	
+	private void prev() {
+		dispose();
+		new DurationInputWindow(this.workout).setVisible(true);
+	}
+	
+	private void begin() {
+		dispose();
+		List<String> equipment = new ArrayList<String>();
+		for (JCheckBox checkbox : checkboxes) {
+			if (checkbox.isSelected()) {
+				equipment.add(checkbox.getText());
+			}
+		}
+		this.workout.addEquipment(equipment);
+		new OutputWindow(this.workout).setVisible(true);
+	}
+	
+	
 }

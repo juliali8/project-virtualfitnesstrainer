@@ -1,78 +1,48 @@
 package virtualfitnesstrainer;
 
-import java.awt.EventQueue;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.SpringLayout;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JLabel;
+@SuppressWarnings("serial")
+public class BeginWindow extends JFrame {
 
-public class BeginWindow {
-
-	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BeginWindow window = new BeginWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public JFrame frame;
 
 	/**
 	 * Create the application.
 	 */
 	public BeginWindow() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		SpringLayout springLayout = new SpringLayout();
-		frame.getContentPane().setLayout(springLayout);
+		SpringLayout layout = new SpringLayout();
+		frame.getContentPane().setLayout(layout);
 		
-		JButton btnBeginNow = new JButton("BEGIN NOW");
-		springLayout.putConstraint(SpringLayout.NORTH, btnBeginNow, 178, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, btnBeginNow, -71, SpringLayout.SOUTH, frame.getContentPane());
-		btnBeginNow.addMouseListener(new MouseAdapter() {
+		JButton beginButton = new JButton("BEGIN NOW");
+		layout.putConstraint(SpringLayout.NORTH, beginButton, 178, SpringLayout.NORTH, frame.getContentPane());
+		layout.putConstraint(SpringLayout.SOUTH, beginButton, -71, SpringLayout.SOUTH, frame.getContentPane());
+		beginButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
 		});
-		btnBeginNow.setBackground(Color.WHITE);
-		btnBeginNow.setForeground(new Color(0, 128, 0));
-		springLayout.putConstraint(SpringLayout.WEST, btnBeginNow, -286, SpringLayout.EAST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, btnBeginNow, -170, SpringLayout.EAST, frame.getContentPane());
-		btnBeginNow.addActionListener(new ActionListener() {
+		beginButton.setBackground(Color.WHITE);
+		beginButton.setForeground(new Color(0, 128, 0));
+		layout.putConstraint(SpringLayout.WEST, beginButton, -286, SpringLayout.EAST, frame.getContentPane());
+		layout.putConstraint(SpringLayout.EAST, beginButton, -170, SpringLayout.EAST, frame.getContentPane());
+		beginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new WorkoutTypeWindow().setVisible(true);
 			}
 		});
-		frame.getContentPane().add(btnBeginNow);
+		frame.getContentPane().add(beginButton);
 		
-		JLabel lblWelcomeToCovid = new JLabel("Welcome to COVID-19 FITNESS TRAINER!");
-		springLayout.putConstraint(SpringLayout.NORTH, lblWelcomeToCovid, 79, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblWelcomeToCovid, -93, SpringLayout.EAST, frame.getContentPane());
-		frame.getContentPane().add(lblWelcomeToCovid);
+		JLabel welcomeLabel = new JLabel("Welcome to COVID-19 FITNESS TRAINER!");
+		layout.putConstraint(SpringLayout.NORTH, welcomeLabel, 79, SpringLayout.NORTH, frame.getContentPane());
+		layout.putConstraint(SpringLayout.EAST, welcomeLabel, -93, SpringLayout.EAST, frame.getContentPane());
+		frame.getContentPane().add(welcomeLabel);
 	}
 }

@@ -16,7 +16,7 @@ public class Endurance implements Exercise {
 		return name;
 	}
 
-	public int getDurationInMinute() {
+	public int getDuration() {
 		return duration;
 	}
 
@@ -26,6 +26,10 @@ public class Endurance implements Exercise {
 
 	public String[] getEquipment() {
 		return equipment; 
+	}
+	
+	public String toString() {
+		return name + " " + duration + " minutes";
 	}
 
 }

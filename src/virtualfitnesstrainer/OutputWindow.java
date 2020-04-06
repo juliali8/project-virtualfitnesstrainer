@@ -1,68 +1,55 @@
 package virtualfitnesstrainer;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.SpringLayout;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.AbstractListModel;
+import java.util.List;
 
+@SuppressWarnings("serial")
 public class OutputWindow extends JFrame {
 
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					OutputWindow frame = new OutputWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JPanel panel;
+	private Workout workout;
+	private List<Exercise> exercises;
 
 	/**
 	 * Create the frame.
 	 */
-	public OutputWindow() {
+	public OutputWindow(Workout workout) {
+		this.workout = workout;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		SpringLayout sl_contentPane = new SpringLayout();
-		contentPane.setLayout(sl_contentPane);
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(panel);
+		SpringLayout layout = new SpringLayout();
+		panel.setLayout(layout);
 		
-		JLabel lblYourWorkout = new JLabel("Your Workout:");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblYourWorkout, 10, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblYourWorkout, 164, SpringLayout.WEST, contentPane);
-		contentPane.add(lblYourWorkout);
+		JLabel workoutLabel = new JLabel("Your Workout:");
+		layout.putConstraint(SpringLayout.NORTH, workoutLabel, 10, SpringLayout.NORTH, panel);
+		layout.putConstraint(SpringLayout.WEST, workoutLabel, 164, SpringLayout.WEST, panel);
+		panel.add(workoutLabel);
 		
-		JList list = new JList();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, list, -225, SpringLayout.SOUTH, contentPane);
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Exercise 1", "Exercise 2", "Exercise 3", "Exercise 4", "Exercise 5"};
+		List<Exercise> exercises = this.workout.generateWorkout();
+		
+		JList<Exercise> list = new JList<Exercise>();
+		layout.putConstraint(SpringLayout.NORTH, list, -225, SpringLayout.SOUTH, panel);
+		list.setModel(new DefaultListModel() {
 			public int getSize() {
-				return values.length;
+				return exercises.size();
 			}
 			public Object getElementAt(int index) {
-				return values[index];
+				return exercises.get(index).toString();
 			}
 		});
-		sl_contentPane.putConstraint(SpringLayout.WEST, list, 130, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, list, -10, SpringLayout.SOUTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, list, 293, SpringLayout.WEST, contentPane);
-		contentPane.add(list);
+		layout.putConstraint(SpringLayout.WEST, list, 130, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.SOUTH, list, -10, SpringLayout.SOUTH, panel);
+		layout.putConstraint(SpringLayout.EAST, list, 293, SpringLayout.WEST, panel);
+		panel.add(list);
+	}
+	
+	public void generateWorkout() {
+		
 	}
 
 }
