@@ -57,10 +57,10 @@ public class DurationInputWindow extends JFrame {
 		layout.putConstraint(SpringLayout.WEST, durationBox, 137, SpringLayout.WEST, panel);
 		layout.putConstraint(SpringLayout.SOUTH, durationBox, -108, SpringLayout.SOUTH, panel);
 		layout.putConstraint(SpringLayout.EAST, durationBox, -123, SpringLayout.EAST, panel);
-		durationBox.setText("30");
+		durationBox.setText("10");
 		panel.add(durationBox);
 		
-		durationLabel = new JLabel("How long will your workout be?");
+		durationLabel = new JLabel("How long will your workout be (minutes)?");
 		layout.putConstraint(SpringLayout.NORTH, durationLabel, 66, SpringLayout.NORTH, panel);
 		layout.putConstraint(SpringLayout.SOUTH, durationLabel, 82, SpringLayout.NORTH, panel);
 		layout.putConstraint(SpringLayout.EAST, durationLabel, -113, SpringLayout.EAST, panel);
@@ -74,6 +74,9 @@ public class DurationInputWindow extends JFrame {
 	
 	private void next() {
 		dispose();
+		if (Integer.parseInt(durationBox.getText()) < 10) {
+			durationBox.setText("10");
+		}
 		this.workout.setDuration(Integer.parseInt(durationBox.getText()));
 		new MaterialsInputWindow(workout).setVisible(true);
 	}

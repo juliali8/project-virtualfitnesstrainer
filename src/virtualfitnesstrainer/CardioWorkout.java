@@ -15,7 +15,13 @@ public class CardioWorkout implements Workout {
 		this.totalTime = 0;
 		this.exercises = new ArrayList<Exercise>();
 		// FIXME: Fill exercises with exercises
-		exercises.add(new Cardio("Run", 10, new String[0]));
+		exercises.add(new Cardio("Run", 20, new String[0]));
+		exercises.add(new Cardio("Jumping Jacks", 5, new String[0]));
+		exercises.add(new Cardio("Mountain Climbers", 5, new String[0]));
+		exercises.add(new Cardio("Sprint", 5, new String[0]));
+		exercises.add(new Cardio("Burpees", 5, new String[0]));
+		
+		this.workout = new ArrayList<Exercise>();
 	}
 	
 	public void setDuration(int minutes) {
@@ -30,21 +36,30 @@ public class CardioWorkout implements Workout {
 		while (totalTime < desiredTime) {
 			addExercise(exercises.get((int)(Math.random() * exercises.size())));
 		}
-		return exercises;
+		return workout;
 	}
 	
 	public boolean addExercise(Exercise e) {
-		if(totalTime + e.getDuration() <= desiredTime) {
+		if(totalTime + e.getDuration() <= desiredTime && equipmentOwned(e)) {
 			totalTime += e.getDuration();
-			return exercises.add(e);
+			return workout.add(e);
 		}
 		else {
 			return false;
 		}
 	}
+	
+	public boolean equipmentOwned(Exercise e) {
+		for (String equipmentNeeded : e.getEquipment()) {
+			if (!equipment.contains(equipmentNeeded)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	public boolean removeExercise(Exercise e) {
-		return exercises.remove(e); 
+		return workout.remove(e); 
 	}
 
 }

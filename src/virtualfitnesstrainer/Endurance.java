@@ -29,7 +29,7 @@ public class Endurance implements Exercise {
 	}
 	
 	public String toString() {
-		return name + " " + duration + " minutes";
+		return name + " " + duration + " min";
 	}
 
 }

@@ -9,6 +9,7 @@ public class OutputWindow extends JFrame {
 
 	private JPanel panel;
 	private Workout workout;
+	@SuppressWarnings("unused")
 	private List<Exercise> exercises;
 
 	/**
@@ -32,13 +33,13 @@ public class OutputWindow extends JFrame {
 		
 		List<Exercise> exercises = this.workout.generateWorkout();
 		
-		JList<Exercise> list = new JList<Exercise>();
+		JList<String> list = new JList<String>();
 		layout.putConstraint(SpringLayout.NORTH, list, -225, SpringLayout.SOUTH, panel);
-		list.setModel(new DefaultListModel() {
+		list.setModel(new DefaultListModel<String>() {
 			public int getSize() {
 				return exercises.size();
 			}
-			public Object getElementAt(int index) {
+			public String getElementAt(int index) {
 				return exercises.get(index).toString();
 			}
 		});
