@@ -1,39 +1,13 @@
 package virtualfitnesstrainer;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
-import javax.swing.SpringLayout;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JRadioButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JLabel;
+import java.awt.event.*;
 
+@SuppressWarnings("serial")
 public class WorkoutTypeWindow extends JFrame {
 
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					WorkoutTypeWindow frame = new WorkoutTypeWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JPanel panel;
 
 	/**
 	 * Create the frame.
@@ -41,54 +15,78 @@ public class WorkoutTypeWindow extends JFrame {
 	public WorkoutTypeWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		SpringLayout sl_contentPane = new SpringLayout();
-		contentPane.setLayout(sl_contentPane);
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(panel);
+		SpringLayout layout = new SpringLayout();
+		panel.setLayout(layout);
 		
-		JButton btnCardio = new JButton("Cardio");
-		btnCardio.addMouseListener(new MouseAdapter() {
+		JButton cardioButton = new JButton("Cardio");
+		cardioButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				nextCardio();
 			}
 		});
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnCardio, 159, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, btnCardio, 26, SpringLayout.WEST, contentPane);
-		contentPane.add(btnCardio);
+		layout.putConstraint(SpringLayout.NORTH, cardioButton, 159, SpringLayout.NORTH, panel);
+		layout.putConstraint(SpringLayout.WEST, cardioButton, 26, SpringLayout.WEST, panel);
+		panel.add(cardioButton);
 		
-		JButton btnPower = new JButton("Power");
-		btnPower.addMouseListener(new MouseAdapter() {
+		JButton powerButton = new JButton("Power");
+		powerButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				nextPower();
 			}
 		});
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnPower, 0, SpringLayout.NORTH, btnCardio);
-		contentPane.add(btnPower);
+		layout.putConstraint(SpringLayout.NORTH, powerButton, 0, SpringLayout.NORTH, cardioButton);
+		panel.add(powerButton);
 		
-		JButton btnEndurance = new JButton("Endurance");
-		btnEndurance.addMouseListener(new MouseAdapter() {
+		JButton enduranceButton = new JButton("Endurance");
+		enduranceButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				nextEndurance();
 			}
 		});
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnPower, -50, SpringLayout.WEST, btnEndurance);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, btnEndurance, 0, SpringLayout.NORTH, btnCardio);
-		sl_contentPane.putConstraint(SpringLayout.EAST, btnEndurance, -21, SpringLayout.EAST, contentPane);
-		contentPane.add(btnEndurance);
+		layout.putConstraint(SpringLayout.EAST, powerButton, -50, SpringLayout.WEST, enduranceButton);
+		layout.putConstraint(SpringLayout.NORTH, enduranceButton, 0, SpringLayout.NORTH, cardioButton);
+		layout.putConstraint(SpringLayout.EAST, enduranceButton, -21, SpringLayout.EAST, panel);
+		panel.add(enduranceButton);
 		
-		JLabel lblChooseYourType = new JLabel("Choose your type of workout:");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblChooseYourType, 59, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblChooseYourType, 121, SpringLayout.WEST, contentPane);
-		contentPane.add(lblChooseYourType);
+		JLabel chooseLabel = new JLabel("Choose your type of workout:");
+		layout.putConstraint(SpringLayout.NORTH, chooseLabel, 59, SpringLayout.NORTH, panel);
+		layout.putConstraint(SpringLayout.WEST, chooseLabel, 121, SpringLayout.WEST, panel);
+		panel.add(chooseLabel);
 		
-		JButton btnPrevious = new JButton("Previous");
-		btnPrevious.addMouseListener(new MouseAdapter() {
+		JButton prevButton = new JButton("Previous");
+		prevButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				prev();
 			}
 		});
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnPrevious, 0, SpringLayout.SOUTH, contentPane);
-		contentPane.add(btnPrevious);
+		layout.putConstraint(SpringLayout.SOUTH, prevButton, 0, SpringLayout.SOUTH, panel);
+		panel.add(prevButton);
+	}
+	
+	private void prev() {
+		dispose();
+		new BeginWindow().setVisible(true);
+	}
+	
+	private void nextCardio() {
+		dispose();
+		new DurationInputWindow(new CardioWorkout()).setVisible(true);
+	}
+	
+	private void nextPower() {
+		dispose();
+		new DurationInputWindow(new StrengthWorkout()).setVisible(true);
+	}
+	
+	private void nextEndurance() {
+		dispose();
+		new DurationInputWindow(new EnduranceWorkout()).setVisible(true);
 	}
 }

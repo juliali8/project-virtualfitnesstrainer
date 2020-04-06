@@ -3,9 +3,11 @@ package virtualfitnesstrainer;
 public interface Exercise {
 	public String getName(); 
 	
-	public int getDurationInMinute();
+	public int getDuration();
 	
 	public int getReps();
 	
 	public String[] getEquipment();
+	
+	public String toString();
 }
