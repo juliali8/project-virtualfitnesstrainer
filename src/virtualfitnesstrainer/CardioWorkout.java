@@ -28,6 +28,10 @@ public class CardioWorkout implements Workout {
 		this.desiredTime = minutes;
 	}
 	
+	public void setExercises(List<Exercise> exercises) {
+		this.exercises = exercises;
+	}
+	
 	public void addEquipment(List<String> equipment) {
 		this.equipment = equipment;
 	}
