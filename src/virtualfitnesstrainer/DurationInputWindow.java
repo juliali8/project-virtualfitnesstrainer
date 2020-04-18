@@ -67,6 +67,20 @@ public class DurationInputWindow extends JFrame {
 		panel.add(durationLabel);
 	}
 	
+	public String getDurationBoxText() {
+		return durationBox.getText();
+	}
+	
+	public void setDurationBoxText(String input) {
+		durationBox.setText(input);
+	}
+	
+	public void checkValidDurationBoxInput() {
+		if (Integer.parseInt(durationBox.getText()) < 10) {
+			durationBox.setText("10");
+		}
+	}
+	
 	private void prev() {
 		dispose();
 		new WorkoutTypeWindow().setVisible(true);
@@ -74,9 +88,7 @@ public class DurationInputWindow extends JFrame {
 	
 	private void next() {
 		dispose();
-		if (Integer.parseInt(durationBox.getText()) < 10) {
-			durationBox.setText("10");
-		}
+		checkValidDurationBoxInput();
 		this.workout.setDuration(Integer.parseInt(durationBox.getText()));
 		new MaterialsInputWindow(workout).setVisible(true);
 	}

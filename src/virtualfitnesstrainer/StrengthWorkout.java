@@ -26,6 +26,10 @@ public class StrengthWorkout implements Workout {
 	public void setDuration(int minutes) {
 		this.desiredTime = minutes;
 	}
+	
+	public void setExercises(List<Exercise> exercises) {
+		this.exercises = exercises;
+	}
 
 	public void addEquipment(List<String> equipment) {
 		this.equipment = equipment;

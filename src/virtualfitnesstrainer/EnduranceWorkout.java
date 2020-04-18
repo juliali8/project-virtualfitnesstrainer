@@ -25,6 +25,14 @@ public class EnduranceWorkout implements Workout {
 	public void setDuration(int minutes) {
 		this.desiredTime = minutes;
 	}
+	
+	public void setExercises(List<Exercise> exercises) {
+		this.exercises = exercises;
+	}
+	
+	public int getDuration() {
+		return desiredTime;
+	}
 
 	public void addEquipment(List<String> equipment) {
 		this.equipment = equipment;
