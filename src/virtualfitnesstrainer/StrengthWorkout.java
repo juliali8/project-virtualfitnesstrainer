@@ -26,6 +26,16 @@ public class StrengthWorkout implements Workout {
 		exercises.add(new Strength("Glute Bridges", 2, 15, new String[]{"Dumbbells"}));
 		exercises.add(new Strength("Shoulder Raises", 3, 10, new String[]{"Dumbbells"}));
 		exercises.add(new Strength("Tricep Dips", 3, 20, new String[] {"Chair"}));
+		exercises.add(new Strength("Plank Jump Ins", 2, 30, new String[0]));
+		exercises.add(new Strength("Supermans", 2, 20, new String[0]));
+		exercises.add(new Strength("Shoulder Taps", 5, 25, new String[0]));
+		exercises.add(new Strength("Lunges", 6, 30, new String[0]));
+		exercises.add(new Strength("UpDowns", 2, 20, new String[0]));
+		exercises.add(new Strength("Squats", 5, 25, new String[0]));
+		exercises.add(new Strength("Plank", 1, 0, new String[0]));
+		exercises.add(new Strength("Courtsey Lunge", 5, 20, new String[0]));
+		
+		
 		
 		this.workout = new ArrayList<Exercise>();
 	}
