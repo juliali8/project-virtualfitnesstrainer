@@ -18,6 +18,13 @@ public class EnduranceWorkout implements Workout {
 		exercises.add(new Endurance("Bike", 10, new String[]{"Bike"}));
 		exercises.add(new Endurance("Run", 10, new String[0]));
 		exercises.add(new Endurance("Jog", 20, new String[0]));
+		exercises.add(new Endurance("Plank", 1, new String[0]));
+		exercises.add(new Endurance("Jump Rope", 20, new String[] {"Jump Rope"}));
+		exercises.add(new Endurance("Reverse Crunches", 1, new String[0]));
+		exercises.add(new Endurance("Hip Dips", 1, new String[0]));
+		exercises.add(new Endurance("Side Plank", 1, new String[0]));
+		exercises.add(new Endurance("Butt Kickers", 2, new String[0]));
+		
 		
 		this.workout = new ArrayList<Exercise>();
 	}
