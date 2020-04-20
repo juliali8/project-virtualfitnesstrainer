@@ -111,6 +111,7 @@ public class MaterialsInputWindow extends JFrame {
 			}
 		}
 		this.workout.addEquipment(equipment);
+		this.workout.generateWorkout();
 		new OutputWindow(this.workout).setVisible(true);
 	}
 	

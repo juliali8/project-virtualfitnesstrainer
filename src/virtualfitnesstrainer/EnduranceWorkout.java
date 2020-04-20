@@ -46,10 +46,16 @@ public class EnduranceWorkout implements Workout {
 	}
 
 	public List<Exercise> generateWorkout() {
+		this.workout.clear();
+		this.totalTime = 0;
 		while (totalTime < desiredTime) {
 			addExercise(exercises.get((int)(Math.random() * exercises.size())));
 		}
 		return workout;
+	}
+	
+	public List<Exercise> getWorkout() {
+		return this.workout;
 	}
 	
 	public boolean addExercise(Exercise e) {

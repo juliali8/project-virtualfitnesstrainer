@@ -16,10 +16,10 @@ public class StrengthWorkout implements Workout {
 		this.exercises = new ArrayList<Exercise>();
 		// FIXME: Fill exercises with exercises
 		exercises.add(new Strength("Bicep Curls", 5, 30, new String[]{"Dumbbells"}));
-		exercises.add(new Strength("Pushups", 10, 50, new String[0]));
+		exercises.add(new Strength("Pushups", 5, 25, new String[0]));
 		exercises.add(new Strength("Shoulder Press", 5, 30, new String[]{"Dumbbells"}));
 		exercises.add(new Strength("Sit-ups", 5, 50, new String[0]));
-		exercises.add(new Strength("Dumbbell Deadlife", 5, 10, new String[]{"Dumbbells"}));
+		exercises.add(new Strength("Dumbbell Deadlift", 5, 10, new String[]{"Dumbbells"}));
 		exercises.add(new Strength("Russian Twists", 2, 40, new String[0]));
 		exercises.add(new Strength("Squats", 5, 20, new String[]{"Dumbbells"}));
 		exercises.add(new Strength("Dumbbell Row", 3, 15, new String[]{"Dumbbells"}));
@@ -53,10 +53,16 @@ public class StrengthWorkout implements Workout {
 	}
 
 	public List<Exercise> generateWorkout() {
+		this.workout.clear();
+		this.totalTime = 0;
 		while (totalTime < desiredTime) {
 			addExercise(exercises.get((int)(Math.random() * exercises.size())));
 		}
 		return workout;
+	}
+	
+	public List<Exercise> getWorkout() {
+		return this.workout;
 	}
 	
 	public boolean addExercise(Exercise e) {
