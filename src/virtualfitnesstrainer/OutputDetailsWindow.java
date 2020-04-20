@@ -2,88 +2,90 @@ package virtualfitnesstrainer;
 
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
-import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.SwingConstants;
 
-public class OutputDetailsWindow extends JPanel {
+@SuppressWarnings("serial")
+public class OutputDetailsWindow extends JFrame {
+	
+	private JPanel panel;
+	Workout workout;
+	Exercise exercise;
 
 	/**
 	 * Create the panel.
 	 */
-	public OutputDetailsWindow() {
-		SpringLayout springLayout = new SpringLayout();
-		setLayout(springLayout);
+	public OutputDetailsWindow(Workout workout, Exercise exercise) {
+		this.workout = workout;
+		this.exercise = exercise;
 		
-		JButton btnBackToWorkouts = new JButton("Back");
-		btnBackToWorkouts.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		springLayout.putConstraint(SpringLayout.NORTH, btnBackToWorkouts, 261, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, btnBackToWorkouts, -440, SpringLayout.EAST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnBackToWorkouts, 290, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, btnBackToWorkouts, -365, SpringLayout.EAST, this);
-		add(btnBackToWorkouts);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(panel);
+		SpringLayout layout = new SpringLayout();
+		panel.setLayout(layout);
 		
-		JLabel lblExercise = new JLabel("Exercise");
-		springLayout.putConstraint(SpringLayout.NORTH, lblExercise, 46, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblExercise, 197, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblExercise, 65, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, lblExercise, 256, SpringLayout.WEST, this);
-		lblExercise.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		add(lblExercise);
+		JLabel exerciseLabel = new JLabel("Exercise: " + exercise.getName());
+		layout.putConstraint(SpringLayout.NORTH, exerciseLabel, 36, SpringLayout.NORTH, panel);
+		layout.putConstraint(SpringLayout.WEST, exerciseLabel, 47, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.SOUTH, exerciseLabel, -213, SpringLayout.SOUTH, panel);
+		layout.putConstraint(SpringLayout.EAST, exerciseLabel, -29, SpringLayout.EAST, panel);
+		exerciseLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		exerciseLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		panel.add(exerciseLabel);
 		
-		JLabel lblDuration = new JLabel("Duration:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblDuration, 19, SpringLayout.SOUTH, lblExercise);
-		springLayout.putConstraint(SpringLayout.WEST, lblDuration, 154, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblDuration, -200, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, lblDuration, 213, SpringLayout.WEST, this);
-		add(lblDuration);
+		JLabel durationLabel = new JLabel("Duration:");
+		layout.putConstraint(SpringLayout.NORTH, durationLabel, 84, SpringLayout.NORTH, panel);
+		layout.putConstraint(SpringLayout.SOUTH, durationLabel, -168, SpringLayout.SOUTH, panel);
+		layout.putConstraint(SpringLayout.EAST, durationLabel, 213, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.WEST, durationLabel, 154, SpringLayout.WEST, panel);
+
+		panel.add(durationLabel);
 		
-		JLabel duration = new JLabel("0");
-		springLayout.putConstraint(SpringLayout.NORTH, duration, 19, SpringLayout.SOUTH, lblExercise);
-		springLayout.putConstraint(SpringLayout.WEST, duration, 35, SpringLayout.EAST, lblDuration);
-		springLayout.putConstraint(SpringLayout.EAST, duration, -143, SpringLayout.EAST, this);
-		add(duration);
+		JLabel duration = new JLabel("" + exercise.getDuration());
+		layout.putConstraint(SpringLayout.NORTH, duration, 29, SpringLayout.SOUTH, exerciseLabel);
+		layout.putConstraint(SpringLayout.WEST, duration, 38, SpringLayout.EAST, durationLabel);
+		layout.putConstraint(SpringLayout.EAST, duration, -164, SpringLayout.EAST, panel);
+		panel.add(duration);
 		
-		JLabel lblRepetitions = new JLabel("Repetitions:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblRepetitions, 6, SpringLayout.SOUTH, lblDuration);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblRepetitions, 22, SpringLayout.SOUTH, lblDuration);
-		springLayout.putConstraint(SpringLayout.WEST, lblRepetitions, 154, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.EAST, lblRepetitions, 229, SpringLayout.WEST, this);
-		add(lblRepetitions);
+		JLabel reps = new JLabel("" + exercise.getReps());
+		layout.putConstraint(SpringLayout.NORTH, reps, 106, SpringLayout.NORTH, panel);
+		layout.putConstraint(SpringLayout.WEST, reps, 0, SpringLayout.WEST, duration);
+		layout.putConstraint(SpringLayout.EAST, reps, 28, SpringLayout.EAST, duration);
+		panel.add(reps);
+	
 		
-		JLabel repetitions = new JLabel("0");
-		springLayout.putConstraint(SpringLayout.NORTH, repetitions, 106, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, duration, -6, SpringLayout.NORTH, repetitions);
-		springLayout.putConstraint(SpringLayout.WEST, repetitions, 19, SpringLayout.EAST, lblRepetitions);
-		springLayout.putConstraint(SpringLayout.EAST, repetitions, -143, SpringLayout.EAST, this);
-		add(repetitions);
-		
-		JLabel lblMaterials = new JLabel("Materials:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblMaterials, 128, SpringLayout.NORTH, this);
-		add(lblMaterials);
+		JLabel materialsLabel = new JLabel("Materials:");
+		layout.putConstraint(SpringLayout.WEST, materialsLabel, 154, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.SOUTH, materialsLabel, -124, SpringLayout.SOUTH, panel);
+		layout.putConstraint(SpringLayout.EAST, materialsLabel, 215, SpringLayout.WEST, panel);
+		panel.add(materialsLabel);
 		
 		JLabel materials = new JLabel("...");
-		springLayout.putConstraint(SpringLayout.EAST, lblMaterials, -33, SpringLayout.WEST, materials);
-		springLayout.putConstraint(SpringLayout.SOUTH, repetitions, -6, SpringLayout.NORTH, materials);
-		springLayout.putConstraint(SpringLayout.EAST, materials, -165, SpringLayout.EAST, this);
-		springLayout.putConstraint(SpringLayout.NORTH, materials, -172, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, materials, -156, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, materials, 248, SpringLayout.WEST, this);
-		add(materials);
+		layout.putConstraint(SpringLayout.NORTH, materials, 128, SpringLayout.NORTH, panel);
+		layout.putConstraint(SpringLayout.WEST, materials, 229, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.EAST, materials, -29, SpringLayout.EAST, panel);
+		panel.add(materials);
 		
-		JLabel lblHowTo = new JLabel("How to:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblHowTo, 6, SpringLayout.SOUTH, lblMaterials);
-		springLayout.putConstraint(SpringLayout.WEST, lblHowTo, 0, SpringLayout.WEST, lblDuration);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblHowTo, -134, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, lblHowTo, 0, SpringLayout.EAST, lblDuration);
-		add(lblHowTo);
+		JLabel repsLabel = new JLabel("Repetitions:");
+		layout.putConstraint(SpringLayout.NORTH, materialsLabel, 6, SpringLayout.SOUTH, repsLabel);
+		layout.putConstraint(SpringLayout.SOUTH, repsLabel, -146, SpringLayout.SOUTH, panel);
+		layout.putConstraint(SpringLayout.NORTH, repsLabel, 6, SpringLayout.SOUTH, durationLabel);
+		layout.putConstraint(SpringLayout.WEST, repsLabel, 138, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.EAST, repsLabel, 213, SpringLayout.WEST, panel);
+		panel.add(repsLabel);
+		
+		JLabel detailsLabel = new JLabel("How to:");
+		layout.putConstraint(SpringLayout.SOUTH, detailsLabel, 22, SpringLayout.SOUTH, materialsLabel);
+		layout.putConstraint(SpringLayout.NORTH, detailsLabel, 6, SpringLayout.SOUTH, materialsLabel);
+		layout.putConstraint(SpringLayout.WEST, detailsLabel, 0, SpringLayout.WEST, durationLabel);
+		layout.putConstraint(SpringLayout.EAST, detailsLabel, 229, SpringLayout.WEST, panel);
+		panel.add(detailsLabel);
 		
 
 	}
