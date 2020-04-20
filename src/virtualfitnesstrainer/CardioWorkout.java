@@ -43,8 +43,10 @@ public class CardioWorkout implements Workout {
 	}
 	
 	public List<Exercise> generateWorkout() {
-		this.workout.clear();
-		this.totalTime = 0;
+		if (this.totalTime > 0) {
+			this.totalTime = 0;
+			this.workout.clear();
+		}
 		while (totalTime < desiredTime) {
 			addExercise(exercises.get((int)(Math.random() * exercises.size())));
 		}
