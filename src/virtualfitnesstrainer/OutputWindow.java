@@ -71,9 +71,9 @@ public class OutputWindow extends JFrame {
 	}
 	
 	public void reroll() {
-		this.panel.setVisible(false);
+		dispose();
 		this.workout.generateWorkout();
-		this.panel.setVisible(true);
+		new OutputWindow(this.workout).setVisible(true);
 	}
 
 }
