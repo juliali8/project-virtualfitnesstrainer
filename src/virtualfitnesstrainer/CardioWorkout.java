@@ -58,9 +58,9 @@ public class CardioWorkout implements Workout {
 	}
 	
 	public boolean addExercise(Exercise e) {
-		if(totalTime + e.getDuration() <= desiredTime && equipmentOwned(e)) {
+		if (totalTime + e.getDuration() <= desiredTime && equipmentOwned(e)) {
 			totalTime += e.getDuration();
-			return workout.add(e);
+			return this.workout.add(e);
 		}
 		else {
 			return false;
