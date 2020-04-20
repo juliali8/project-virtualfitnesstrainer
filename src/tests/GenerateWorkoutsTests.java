@@ -2,20 +2,17 @@ package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.List;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
 import virtualfitnesstrainer.Cardio;
 import virtualfitnesstrainer.CardioWorkout;
-import virtualfitnesstrainer.DurationInputWindow;
 import virtualfitnesstrainer.Endurance;
 import virtualfitnesstrainer.EnduranceWorkout;
 import virtualfitnesstrainer.Exercise;
 import virtualfitnesstrainer.Strength;
 import virtualfitnesstrainer.StrengthWorkout;
-import virtualfitnesstrainer.Workout;
 
 class GenerateExercisesTests {
 
@@ -26,7 +23,7 @@ class GenerateExercisesTests {
 		int numOfReps = 0;
 		String[] equipment = {"", ""}; 
 		Strength s = new Strength(name, duration, numOfReps, equipment);
-		assertTrue(true);
+		assertTrue(s instanceof Strength);
 	}
 
 	@Test
@@ -35,7 +32,7 @@ class GenerateExercisesTests {
 		int duration = 0;
 		String[] equipment = {"", ""}; 
 		Endurance e = new Endurance(name, duration, equipment);
-		assertTrue(true);
+		assertTrue(e instanceof Endurance);
 	}
 
 	@Test
@@ -44,25 +41,25 @@ class GenerateExercisesTests {
 		int duration = 0;
 		String[] equipment = {"", ""}; 
 		Cardio c = new Cardio(name, duration, equipment);
-		assertTrue(true);
+		assertTrue(c instanceof Cardio);
 	}
 
 	@Test
 	void testStrengthWorkoutCreation() {
 		StrengthWorkout sw = new StrengthWorkout();
-		assertTrue(true);
+		assertTrue(sw instanceof StrengthWorkout);
 	}
 
 	@Test
 	void testEnduranceWorkoutCreation() {
 		EnduranceWorkout ew = new EnduranceWorkout();
-		assertTrue(true);
+		assertTrue(ew instanceof EnduranceWorkout);
 	}
 
 	@Test
 	void testCardioWorkoutCreation() {
 		CardioWorkout cw = new CardioWorkout();
-		assertTrue(true);
+		assertTrue(cw instanceof CardioWorkout);
 	}
 
 	@Test
@@ -99,13 +96,7 @@ class GenerateExercisesTests {
 		CardioWorkout cw = new CardioWorkout();
 		cw.setDuration(10);
 		cw.setExercises(exercises);
-		if(cw.generateWorkout().get(0) == c) {
-			assertTrue(true);
-		}
-		else {
-			assertFalse(true);
-		}
-
+		assertTrue(cw.generateWorkout().get(0) == c);
 	}
 
 	@Test
@@ -122,12 +113,7 @@ class GenerateExercisesTests {
 		CardioWorkout cw = new CardioWorkout();
 		cw.setDuration(10);
 		cw.setExercises(exercises);
-		if(cw.generateWorkout().get(0) == c2) {
-			assertTrue(true);
-		}
-		else {
-			assertFalse(true);
-		}
+		assertTrue(cw.generateWorkout().get(0) == c2);
 	}
 
 	@Test
@@ -140,12 +126,7 @@ class GenerateExercisesTests {
 		EnduranceWorkout ew = new EnduranceWorkout();
 		ew.setDuration(10);
 		ew.setExercises(exercises);
-		if(ew.generateWorkout().get(0) == e) {
-			assertTrue(true);
-		}
-		else {
-			assertFalse(true);
-		}
+		assertTrue(ew.generateWorkout().get(0) == e);
 	}
 
 	@Test
@@ -162,12 +143,7 @@ class GenerateExercisesTests {
 		CardioWorkout cw = new CardioWorkout();
 		cw.setDuration(10);
 		cw.setExercises(exercises);
-		if(cw.generateWorkout().get(0) == e2) {
-			assertTrue(true);
-		}
-		else {
-			assertFalse(true);
-		}	
+		assertTrue(cw.generateWorkout().get(0) == e2);
 	}
 
 	@Test
@@ -181,12 +157,7 @@ class GenerateExercisesTests {
 		StrengthWorkout sw = new StrengthWorkout();
 		sw.setDuration(10);
 		sw.setExercises(exercises);
-		if(sw.generateWorkout().get(0) == s) {
-			assertTrue(true);
-		}
-		else {
-			assertFalse(true);
-		}
+		assertTrue(sw.generateWorkout().get(0) == s);
 	}
 
 	@Test
@@ -205,12 +176,7 @@ class GenerateExercisesTests {
 		StrengthWorkout cw = new StrengthWorkout();
 		cw.setDuration(10);
 		cw.setExercises(exercises);
-		if(cw.generateWorkout().get(0) == e2) {
-			assertTrue(true);
-		}
-		else {
-			assertFalse(true);
-		}
+		assertTrue(cw.generateWorkout().get(0) == e2);
 	}
 
 	@Test
@@ -233,12 +199,7 @@ class GenerateExercisesTests {
 		cw.setExercises(exercises);
 		cw.addEquipment(equipment);
 
-		if(cw.generateWorkout().get(0) == c2) {
-			assertTrue(true);
-		}
-		else {
-			assertFalse(true);
-		}
+		assertTrue(cw.generateWorkout().get(0) == c2);
 	}
 
 	@Test
@@ -259,12 +220,7 @@ class GenerateExercisesTests {
 		cw.setExercises(exercises);
 		cw.addEquipment(equipment);
 
-		if(cw.generateWorkout().get(0) == e2) {
-			assertTrue(true);
-		}
-		else {
-			assertFalse(true);
-		}	
+		assertTrue(cw.generateWorkout().get(0) == e2);
 	}
 
 	@Test
@@ -287,12 +243,7 @@ class GenerateExercisesTests {
 		cw.setExercises(exercises);
 		cw.addEquipment(equipment);
 
-		if(cw.generateWorkout().get(0) == s2) {
-			assertTrue(true);
-		}
-		else {
-			assertFalse(true);
-		}
+		assertTrue(cw.generateWorkout().get(0) == s2);
 	}
 
 } 
