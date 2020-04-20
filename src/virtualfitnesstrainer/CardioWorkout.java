@@ -20,6 +20,12 @@ public class CardioWorkout implements Workout {
 		exercises.add(new Cardio("Mountain Climbers", 5, new String[0]));
 		exercises.add(new Cardio("Sprint", 5, new String[0]));
 		exercises.add(new Cardio("Burpees", 5, new String[0]));
+		exercises.add(new Cardio("Jumping Lunges", 1, new String[0]));
+		exercises.add(new Cardio("Squat Jumps", 1, new String[0]));
+		exercises.add(new Cardio("Side to Sides", 2, new String[0]));
+		exercises.add(new Cardio("Up Down in Plank", 1, new String[0]));
+		exercises.add(new Cardio("High Knees", 1, new String[0]));
+		
 		
 		this.workout = new ArrayList<Exercise>();
 	}
@@ -37,16 +43,24 @@ public class CardioWorkout implements Workout {
 	}
 	
 	public List<Exercise> generateWorkout() {
+		if (this.totalTime > 0) {
+			this.totalTime = 0;
+			this.workout.clear();
+		}
 		while (totalTime < desiredTime) {
 			addExercise(exercises.get((int)(Math.random() * exercises.size())));
 		}
 		return workout;
 	}
 	
+	public List<Exercise> getWorkout() {
+		return this.workout;
+	}
+	
 	public boolean addExercise(Exercise e) {
-		if(totalTime + e.getDuration() <= desiredTime && equipmentOwned(e)) {
+		if (totalTime + e.getDuration() <= desiredTime && equipmentOwned(e)) {
 			totalTime += e.getDuration();
-			return workout.add(e);
+			return this.workout.add(e);
 		}
 		else {
 			return false;

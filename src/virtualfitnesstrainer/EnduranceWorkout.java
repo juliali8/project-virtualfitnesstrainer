@@ -18,6 +18,13 @@ public class EnduranceWorkout implements Workout {
 		exercises.add(new Endurance("Bike", 10, new String[]{"Bike"}));
 		exercises.add(new Endurance("Run", 10, new String[0]));
 		exercises.add(new Endurance("Jog", 20, new String[0]));
+		exercises.add(new Endurance("Plank", 1, new String[0]));
+		exercises.add(new Endurance("Jump Rope", 20, new String[] {"Jump Rope"}));
+		exercises.add(new Endurance("Reverse Crunches", 1, new String[0]));
+		exercises.add(new Endurance("Hip Dips", 1, new String[0]));
+		exercises.add(new Endurance("Side Plank", 1, new String[0]));
+		exercises.add(new Endurance("Butt Kickers", 2, new String[0]));
+		
 		
 		this.workout = new ArrayList<Exercise>();
 	}
@@ -39,16 +46,24 @@ public class EnduranceWorkout implements Workout {
 	}
 
 	public List<Exercise> generateWorkout() {
+		if (this.totalTime > 0) {
+			this.totalTime = 0;
+			this.workout.clear();
+		}
 		while (totalTime < desiredTime) {
 			addExercise(exercises.get((int)(Math.random() * exercises.size())));
 		}
 		return workout;
 	}
 	
+	public List<Exercise> getWorkout() {
+		return this.workout;
+	}
+	
 	public boolean addExercise(Exercise e) {
-		if(totalTime + e.getDuration() <= desiredTime && equipmentOwned(e)) {
+		if (totalTime + e.getDuration() <= desiredTime && equipmentOwned(e)) {
 			totalTime += e.getDuration();
-			return workout.add(e);
+			return this.workout.add(e);
 		}
 		else {
 			return false;
