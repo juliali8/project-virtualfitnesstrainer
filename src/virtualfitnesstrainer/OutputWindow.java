@@ -11,7 +11,6 @@ public class OutputWindow extends JFrame {
 
 	private JPanel panel;
 	private Workout workout;
-	@SuppressWarnings("unused")
 	private List<Exercise> exercises;
 
 	/**
@@ -19,6 +18,7 @@ public class OutputWindow extends JFrame {
 	 */
 	public OutputWindow(Workout workout) {
 		this.workout = workout;
+		this.exercises = workout.getWorkout();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -33,9 +33,15 @@ public class OutputWindow extends JFrame {
 		layout.putConstraint(SpringLayout.WEST, workoutLabel, 164, SpringLayout.WEST, panel);
 		panel.add(workoutLabel);
 		
-		List<Exercise> exercises = this.workout.generateWorkout();
-		
 		JList<String> list = new JList<String>();
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent event) {
+				JList<?> list = (JList<?>) event.getSource();
+	            int index = list.locationToIndex(event.getPoint());
+	            new OutputDetailsWindow(workout, exercises.get(index)).setVisible(true);
+			}
+		});
 		layout.putConstraint(SpringLayout.NORTH, list, -225, SpringLayout.SOUTH, panel);
 		list.setModel(new DefaultListModel<String>() {
 			public int getSize() {
@@ -50,21 +56,24 @@ public class OutputWindow extends JFrame {
 		layout.putConstraint(SpringLayout.EAST, list, 293, SpringLayout.WEST, panel);
 		panel.add(list);
 		
-		JButton btnReroll = new JButton("Reroll");
-		btnReroll.addMouseListener(new MouseAdapter() {
+		JButton rerollButton = new JButton("Reroll");
+		rerollButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent event) {
+				reroll();
 			}
 		});
-		layout.putConstraint(SpringLayout.NORTH, btnReroll, 239, SpringLayout.NORTH, panel);
-		layout.putConstraint(SpringLayout.WEST, btnReroll, 67, SpringLayout.EAST, list);
-		layout.putConstraint(SpringLayout.SOUTH, btnReroll, 268, SpringLayout.NORTH, panel);
-		layout.putConstraint(SpringLayout.EAST, btnReroll, 147, SpringLayout.EAST, list);
-		panel.add(btnReroll);
+		layout.putConstraint(SpringLayout.NORTH, rerollButton, 239, SpringLayout.NORTH, panel);
+		layout.putConstraint(SpringLayout.WEST, rerollButton, 67, SpringLayout.EAST, list);
+		layout.putConstraint(SpringLayout.SOUTH, rerollButton, 268, SpringLayout.NORTH, panel);
+		layout.putConstraint(SpringLayout.EAST, rerollButton, 147, SpringLayout.EAST, list);
+		panel.add(rerollButton);
 	}
 	
-	public void generateWorkout() {
-		
+	public void reroll() {
+		this.panel.setVisible(false);
+		this.workout.generateWorkout();
+		this.panel.setVisible(true);
 	}
 
 }

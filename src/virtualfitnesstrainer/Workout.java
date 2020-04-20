@@ -10,6 +10,8 @@ public interface Workout {
 	
 	public List<Exercise> generateWorkout();
 	
+	public List<Exercise> getWorkout();
+	
 	public boolean addExercise(Exercise e); 
 	
 	public boolean removeExercise(Exercise e);
