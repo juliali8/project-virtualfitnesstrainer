@@ -1,13 +1,11 @@
 # cse237-project
 What user stories were completed this iteration?
 
-We completed a GUI and finished the structure of our project (classes, interfaces, etc.) 
-
+We have completed the user story where the user can press a re-roll button if the user doesn’t like the workout. We also completed the user story where the user can expect a wide variety of workouts. We will also continue to add to the exercise list to provide an even greater list of workouts. We completed Junit tests which ensure that we can make sure the software we push out to users is accurate, and so users can see if it is. 
 
 What user stories do you intend to complete next iteration?
 
-We plan to continue working on our exercise list (providing more options) and updating the materials list for each exercise. 
-Also planning on implementing a reroll button and being able to click on an exercise to see details. We would like to clean up the functionality a bit more so that the exercises picked aren't purely random.
+We intend to complete the user story where the user can click on an exercise and see more details about that exercise. So far, the information given by this detailed view is lacking. We are also building a new algorithm to select exercises to ensure that the workout is optimal and never boring. We also intend to fix the bugs that have been haunting us for the final iteration of this project. We hope to roll out a clean working program in the next two weeks.
 
 
 Is there anything that you implemented but doesn't currently work?
