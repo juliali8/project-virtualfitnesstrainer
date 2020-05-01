@@ -4,6 +4,7 @@ import java.util.*;
 
 public class CardioWorkout implements Workout {
 	
+	
 	List<Exercise> exercises;
 	int desiredTime;
 	int totalTime;
