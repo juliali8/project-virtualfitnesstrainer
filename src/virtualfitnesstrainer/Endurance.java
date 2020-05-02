@@ -22,8 +22,8 @@ public class Endurance implements Exercise {
 		return duration;
 	}
 
-	public int getReps() {
-		return 0;
+	public String getReps() {
+		return "NA";
 	}
 
 	public String[] getEquipment() {

@@ -1,7 +1,6 @@
 package virtualfitnesstrainer;
 
 import javax.swing.JPanel;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
@@ -9,14 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
-
 import javax.swing.SwingConstants;
-
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 
 @SuppressWarnings("serial")
@@ -58,13 +50,13 @@ public class OutputDetailsWindow extends JFrame {
 
 		panel.add(durationLabel);
 		
-		JLabel duration = new JLabel("" + exercise.getDuration());
+		JLabel duration = new JLabel("" + exercise.getDuration() + " min(s)");
 		layout.putConstraint(SpringLayout.NORTH, duration, 29, SpringLayout.SOUTH, exerciseLabel);
 		layout.putConstraint(SpringLayout.WEST, duration, 38, SpringLayout.EAST, durationLabel);
-		layout.putConstraint(SpringLayout.EAST, duration, -164, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.EAST, duration, -140, SpringLayout.EAST, panel);
 		panel.add(duration);
 		
-		JLabel reps = new JLabel("" + exercise.getReps());
+		JLabel reps = new JLabel(exercise.getReps());
 		layout.putConstraint(SpringLayout.NORTH, reps, 106, SpringLayout.NORTH, panel);
 		layout.putConstraint(SpringLayout.WEST, reps, 0, SpringLayout.WEST, duration);
 		layout.putConstraint(SpringLayout.EAST, reps, 28, SpringLayout.EAST, duration);
@@ -77,7 +69,11 @@ public class OutputDetailsWindow extends JFrame {
 		layout.putConstraint(SpringLayout.EAST, materialsLabel, 215, SpringLayout.WEST, panel);
 		panel.add(materialsLabel);
 		
-		JLabel materials = new JLabel("...");
+		String equipment = "";
+		for (String equip : exercise.getEquipment()) {
+			equipment += equip + " ";
+		}
+		JLabel materials = new JLabel(equipment);
 		layout.putConstraint(SpringLayout.NORTH, materials, 128, SpringLayout.NORTH, panel);
 		layout.putConstraint(SpringLayout.WEST, materials, 229, SpringLayout.WEST, panel);
 		layout.putConstraint(SpringLayout.EAST, materials, -29, SpringLayout.EAST, panel);
