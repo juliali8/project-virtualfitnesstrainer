@@ -28,6 +28,7 @@ public class OutputDetailsWindow extends JFrame {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		panel = new JPanel();
+		setResizable(false);
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(panel);
 		SpringLayout layout = new SpringLayout();
