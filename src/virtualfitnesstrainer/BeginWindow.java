@@ -14,6 +14,7 @@ public class BeginWindow extends JFrame {
 	 */
 	public BeginWindow() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,7 +23,7 @@ public class BeginWindow extends JFrame {
 		
 		JButton beginButton = new JButton("BEGIN NOW");
 		layout.putConstraint(SpringLayout.NORTH, beginButton, 178, SpringLayout.NORTH, frame.getContentPane());
-		layout.putConstraint(SpringLayout.SOUTH, beginButton, -71, SpringLayout.SOUTH, frame.getContentPane());
+		layout.putConstraint(SpringLayout.SOUTH, beginButton, 207, SpringLayout.NORTH, frame.getContentPane());
 		beginButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -42,7 +43,9 @@ public class BeginWindow extends JFrame {
 		
 		JLabel welcomeLabel = new JLabel("Welcome to COVID-19 FITNESS TRAINER!");
 		layout.putConstraint(SpringLayout.NORTH, welcomeLabel, 79, SpringLayout.NORTH, frame.getContentPane());
-		layout.putConstraint(SpringLayout.EAST, welcomeLabel, -93, SpringLayout.EAST, frame.getContentPane());
+		layout.putConstraint(SpringLayout.WEST, welcomeLabel, 99, SpringLayout.WEST, frame.getContentPane());
+		layout.putConstraint(SpringLayout.SOUTH, welcomeLabel, -83, SpringLayout.NORTH, beginButton);
+		layout.putConstraint(SpringLayout.EAST, welcomeLabel, 357, SpringLayout.WEST, frame.getContentPane());
 		frame.getContentPane().add(welcomeLabel);
 	}
 }
