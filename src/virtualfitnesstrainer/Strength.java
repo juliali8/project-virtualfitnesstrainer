@@ -5,13 +5,15 @@ public class Strength implements Exercise {
 	String name; 
 	int duration;
 	int numOfReps; 
-	String[] equipment; 
+	String[] equipment;
+	String imagePath;
 	
 	public Strength(String name, int duration, int numOfReps, String[] equipment) {
 		this.name = name; 
 		this.duration = duration;
 		this.numOfReps = numOfReps; 
 		this.equipment = equipment; 
+		this.imagePath = ".images/cardio/" + name + ".jpg";
 	}
 
 	public String getName() {
@@ -28,6 +30,10 @@ public class Strength implements Exercise {
 
 	public String[] getEquipment() {
 		return equipment; 
+	}
+	
+	public String getImage() {
+		return imagePath;
 	}
 	
 	public String toString() {

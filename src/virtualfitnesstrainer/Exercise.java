@@ -9,5 +9,7 @@ public interface Exercise {
 	
 	public String[] getEquipment();
 	
+	public String getImage();
+	
 	public String toString();
 }
