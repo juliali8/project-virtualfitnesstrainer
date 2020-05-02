@@ -59,20 +59,6 @@ public class WorkoutTypeWindow extends JFrame {
 		layout.putConstraint(SpringLayout.WEST, chooseLabel, 121, SpringLayout.WEST, panel);
 		panel.add(chooseLabel);
 		
-		JButton prevButton = new JButton("Previous");
-		prevButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				prev();
-			}
-		});
-		layout.putConstraint(SpringLayout.SOUTH, prevButton, 0, SpringLayout.SOUTH, panel);
-		panel.add(prevButton);
-	}
-	
-	private void prev() {
-		dispose();
-		new BeginWindow().setVisible(true);
 	}
 	
 	private void nextCardio() {
