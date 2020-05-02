@@ -11,7 +11,7 @@ public class Endurance implements Exercise {
 		this.name = name; 
 		this.duration = duration; 
 		this.equipment = equipment;
-		this.imagePath = "./images/endurance/" + name + ".jpg";
+		this.imagePath = "../images/" + name.replaceAll("\\s", "") + ".jpg";
 	}
 	
 	public String getName() {
