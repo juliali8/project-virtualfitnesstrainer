@@ -6,15 +6,9 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import virtualfitnesstrainer.Cardio;
-import virtualfitnesstrainer.CardioWorkout;
-import virtualfitnesstrainer.Endurance;
-import virtualfitnesstrainer.EnduranceWorkout;
-import virtualfitnesstrainer.Exercise;
-import virtualfitnesstrainer.Strength;
-import virtualfitnesstrainer.StrengthWorkout;
+import virtualfitnesstrainer.*;
 
-class GenerateExercisesTests {
+class GenerateWorkoutsTests {
 
 	@Test
 	void testStrengthExerciseCreation() {
@@ -183,67 +177,81 @@ class GenerateExercisesTests {
 	void testGenerateCardioWorkoutListWithEquipmentRestrictions() {
 		ArrayList<Exercise> exercises = new ArrayList<Exercise>();
 		ArrayList<String> equipment = new ArrayList<String>();
-		equipment.add("Treadmill");
-		String name1 = "Exercise 1"; 
-		int duration1 = 10;
-		Cardio c1 = new Cardio(name1, duration1, new String[] {"Bike"});
+		
+		Cardio c1 = new Cardio("Exercise 1", 10, new String[] {"Bike"});
 		exercises.add(c1);	
 
-		String name2 = "Exercise 2"; 
-		int duration2 = 10;
-		Cardio c2 = new Cardio(name2, duration2, new String[] {"Treadmill"});
-		exercises.add(c2);	
+		Cardio c2 = new Cardio("Exercise 2", 10, new String[] {"Treadmill"});
+		exercises.add(c2);
+		
+		Cardio c3 = new Cardio("Exercise 3", 10, new String[] {"Jump Rope"});
+		exercises.add(c3);	
 
 		CardioWorkout cw = new CardioWorkout();
-		cw.setDuration(10);
+		cw.setDuration(100);
+		equipment.add("Treadmill");
+		equipment.add("Jump Rope");
 		cw.setExercises(exercises);
 		cw.addEquipment(equipment);
+		cw.generateWorkout();
 
-		assertTrue(cw.generateWorkout().get(0) == c2);
+		for (Exercise e : cw.getWorkout()) {
+			assertFalse(e.equals(c1));
+		}
 	}
 
 	@Test
 	void testGenerateEnduranceWorkoutListWithEquipmentRestrictions() {
 		ArrayList<Exercise> exercises = new ArrayList<Exercise>();
 		ArrayList<String> equipment = new ArrayList<String>();
-		equipment.add("Treadmill");
-		String name1 = "Exercise 1"; 
-		int duration1 = 20;
-		Endurance e1 = new Endurance(name1, duration1, new String[]{"Bike"});
+		
+		Endurance e1 = new Endurance("Exercise 1", 10, new String[]{"Bike"});
 		exercises.add(e1);	
-		String name2 = "Exercise 2"; 
-		int duration2 = 10;
-		Endurance e2 = new Endurance(name2, duration2, new String[]{"Treadmill"});
+		
+		Endurance e2 = new Endurance("Exercise 2", 10, new String[]{"Treadmill"});
 		exercises.add(e2);	
+		
+		Endurance e3 = new Endurance("Exercise 3", 10, new String[]{"Mat"});
+		exercises.add(e3);
+		
 		CardioWorkout cw = new CardioWorkout();
-		cw.setDuration(10);
+		cw.setDuration(100);
+		equipment.add("Treadmill");
+		equipment.add("Bike");
 		cw.setExercises(exercises);
 		cw.addEquipment(equipment);
+		cw.generateWorkout();
 
-		assertTrue(cw.generateWorkout().get(0) == e2);
+		for (Exercise e : cw.getWorkout()) {
+			assertFalse(e.equals(e3));
+		}
 	}
 
 	@Test
 	void testGenerateStrengthWorkoutListWithEquipmentRestrictions() {
 		ArrayList<Exercise> exercises = new ArrayList<Exercise>();
 		ArrayList<String> equipment = new ArrayList<String>();
-		equipment.add("Dumbbells");
-		String name1 = "Exercise 1"; 
-		int duration1 = 20;
-		int reps1 = 10;
-		Strength s1 = new Strength(name1, duration1, reps1, new String[] {"Resistance Band"});
-		exercises.add(s1);	
-		String name2 = "Exercise 2"; 
-		int duration2 = 10;
-		int reps2 = 10;
-		Strength s2 = new Strength(name2, duration2, reps2, new String[] {"Dumbbells"});
-		exercises.add(s2);	
+		
+		Strength s1 = new Strength("Exercise 1", 10, 10, new String[] {"Resistance Band"});
+		exercises.add(s1);
+		
+		Strength s2 = new Strength("Exercise 2", 10, 10, new String[] {"Dumbbells"});
+		exercises.add(s2);
+		
+		Strength s3 = new Strength("Exercise 3", 10, 10, new String[] {"Mat"});
+		exercises.add(s3);
+		
 		StrengthWorkout cw = new StrengthWorkout();
-		cw.setDuration(10);
+		cw.setDuration(100);
+		equipment.add("Dumbbells");
+		equipment.add("Mat");
 		cw.setExercises(exercises);
 		cw.addEquipment(equipment);
+		cw.generateWorkout();
 
-		assertTrue(cw.generateWorkout().get(0) == s2);
+		for (Exercise e : cw.getWorkout()) {
+			assertFalse(e.equals(s1));
+		}
 	}
 
 } 
