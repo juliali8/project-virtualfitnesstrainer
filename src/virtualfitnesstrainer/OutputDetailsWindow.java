@@ -1,12 +1,23 @@
 package virtualfitnesstrainer;
 
 import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.SwingConstants;
+
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 
 @SuppressWarnings("serial")
 public class OutputDetailsWindow extends JFrame {
@@ -80,12 +91,32 @@ public class OutputDetailsWindow extends JFrame {
 		layout.putConstraint(SpringLayout.EAST, repsLabel, 213, SpringLayout.WEST, panel);
 		panel.add(repsLabel);
 		
-		JLabel detailsLabel = new JLabel("How to:");
-		layout.putConstraint(SpringLayout.SOUTH, detailsLabel, 22, SpringLayout.SOUTH, materialsLabel);
+		
+        ImageIcon image = new ImageIcon(getClass().getResource(exercise.getImage()));
+        int width = image.getIconWidth();
+        int height = image.getIconHeight();
+		
+		JLabel detailsLabel = new JLabel();
+
+		layout.putConstraint(SpringLayout.SOUTH, detailsLabel, 109, SpringLayout.SOUTH, materialsLabel);
+
 		layout.putConstraint(SpringLayout.NORTH, detailsLabel, 6, SpringLayout.SOUTH, materialsLabel);
 		layout.putConstraint(SpringLayout.WEST, detailsLabel, 0, SpringLayout.WEST, durationLabel);
-		layout.putConstraint(SpringLayout.EAST, detailsLabel, 229, SpringLayout.WEST, panel);
+		layout.putConstraint(SpringLayout.EAST, detailsLabel, 304, SpringLayout.WEST, panel);
+		
+        if(width > height) {
+        	Image scaledImage = image.getImage().getScaledInstance(150, 100, Image.SCALE_DEFAULT);
+        	ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+        	detailsLabel.setIcon(scaledImageIcon);
+        }
+        else {
+        	Image scaledImage = image.getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT);
+        	ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+        	detailsLabel.setIcon(scaledImageIcon);
+        }
+        
 		panel.add(detailsLabel);
+		
 		
 
 	}
