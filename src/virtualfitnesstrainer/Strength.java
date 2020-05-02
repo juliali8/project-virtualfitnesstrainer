@@ -24,8 +24,8 @@ public class Strength implements Exercise {
 		return duration; 
 	}
 
-	public int getReps() {
-		return numOfReps;
+	public String getReps() {
+		return numOfReps + " reps";
 	}
 
 	public String[] getEquipment() {
