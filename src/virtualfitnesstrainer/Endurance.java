@@ -4,12 +4,14 @@ public class Endurance implements Exercise {
 	
 	String name; 
 	int duration; 
-	String[] equipment; 
+	String[] equipment;
+	String imagePath;
 	
 	public Endurance(String name, int duration, String[] equipment) {
 		this.name = name; 
 		this.duration = duration; 
-		this.equipment = equipment; 
+		this.equipment = equipment;
+		this.imagePath = "../images/" + name.replaceAll("\\s", "") + ".jpg";
 	}
 	
 	public String getName() {
@@ -20,12 +22,16 @@ public class Endurance implements Exercise {
 		return duration;
 	}
 
-	public int getReps() {
-		return 0;
+	public String getReps() {
+		return "NA";
 	}
 
 	public String[] getEquipment() {
 		return equipment; 
+	}
+	
+	public String getImage() {
+		return imagePath;
 	}
 	
 	public String toString() {

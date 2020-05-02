@@ -4,6 +4,7 @@ import java.util.*;
 
 public class CardioWorkout implements Workout {
 	
+	
 	List<Exercise> exercises;
 	int desiredTime;
 	int totalTime;
@@ -23,7 +24,7 @@ public class CardioWorkout implements Workout {
 		exercises.add(new Cardio("Jumping Lunges", 1, new String[0]));
 		exercises.add(new Cardio("Squat Jumps", 1, new String[0]));
 		exercises.add(new Cardio("Side to Sides", 2, new String[0]));
-		exercises.add(new Cardio("Up Down in Plank", 1, new String[0]));
+		exercises.add(new Cardio("Up Downs", 1, new String[0]));
 		exercises.add(new Cardio("High Knees", 1, new String[0]));
 		
 		

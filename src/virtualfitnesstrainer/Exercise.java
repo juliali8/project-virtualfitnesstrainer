@@ -5,9 +5,11 @@ public interface Exercise {
 	
 	public int getDuration();
 	
-	public int getReps();
+	public String getReps();
 	
 	public String[] getEquipment();
+	
+	public String getImage();
 	
 	public String toString();
 }
