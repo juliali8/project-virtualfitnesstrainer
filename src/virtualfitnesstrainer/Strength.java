@@ -13,7 +13,7 @@ public class Strength implements Exercise {
 		this.duration = duration;
 		this.numOfReps = numOfReps; 
 		this.equipment = equipment; 
-		this.imagePath = ".images/cardio/" + name + ".jpg";
+		this.imagePath = "../images/" + name.replaceAll("\\s", "") + ".jpg";
 	}
 
 	public String getName() {
