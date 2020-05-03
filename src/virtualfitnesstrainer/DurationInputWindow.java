@@ -61,10 +61,11 @@ public class DurationInputWindow extends JFrame {
 		durationBox.setText("10");
 		panel.add(durationBox);
 		
-		durationLabel = new JLabel("How long will your workout be (minutes)?");
+		durationLabel = new JLabel("How long will your workout be (10 minutes at least)?");
+		durationLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		layout.putConstraint(SpringLayout.NORTH, durationLabel, 66, SpringLayout.NORTH, panel);
 		layout.putConstraint(SpringLayout.SOUTH, durationLabel, 82, SpringLayout.NORTH, panel);
-		layout.putConstraint(SpringLayout.EAST, durationLabel, -113, SpringLayout.EAST, panel);
+		layout.putConstraint(SpringLayout.EAST, durationLabel, -50, SpringLayout.EAST, panel);
 		panel.add(durationLabel);
 	}
 	
@@ -76,9 +77,15 @@ public class DurationInputWindow extends JFrame {
 		durationBox.setText(input);
 	}
 	
-	public void checkValidDurationBoxInput() {
-		if (Integer.parseInt(durationBox.getText()) < 10) {
-			durationBox.setText("10");
+	public boolean checkValidDurationBoxInput() {
+		try {
+			int num = Integer.parseInt(durationBox.getText());
+			if (num < 10) {
+				durationBox.setText("10");
+			}
+			return true;
+		} catch (NumberFormatException ex) {
+			return false;
 		}
 	}
 	
@@ -88,9 +95,12 @@ public class DurationInputWindow extends JFrame {
 	}
 	
 	private void next() {
-		dispose();
-		checkValidDurationBoxInput();
-		this.workout.setDuration(Integer.parseInt(durationBox.getText()));
-		new MaterialsInputWindow(workout).setVisible(true);
+		if (checkValidDurationBoxInput()) {
+			this.workout.setDuration(Integer.parseInt(durationBox.getText()));
+			new MaterialsInputWindow(workout).setVisible(true);
+			dispose();
+		} else {
+			durationLabel.setText("Please enter a number                          ");
+		}
 	}
 }
